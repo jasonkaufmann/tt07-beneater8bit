@@ -5,7 +5,7 @@
 
 `default_nettype none
 `include "eightBit.sv"
-module eater_8bit (
+module tt_um_eater_8bit (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
