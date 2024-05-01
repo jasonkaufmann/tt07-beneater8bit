@@ -11,11 +11,19 @@ project:
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "eater_8bit"
+  top_module:  "tt_um_eater_8bit"
   
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
   source_files:        
     - "project.sv"
+    - "alu.sv"
+    - "clock.sv"
+    - "decoder.sv"
+    - "edge_detector.sv"
+    - "eightBit.sv"
+    - "program_counter.sv"
+    - "ram.sv"
+    - "register.sv"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
