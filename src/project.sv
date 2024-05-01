@@ -4,8 +4,8 @@
  */
 
 `default_nettype none
-
-module tt_um_example (
+`include "eightBit.sv"
+module eater_8bit (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -15,10 +15,23 @@ module tt_um_example (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
+    
+    //the first bit of the inputs is prog_mode. pick it out and give it a name
+    wire prog_mode = ui_in[0];
 
-  // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+    //the next four bits are the address in RAM we want to store the data in
+    wire [3:0] addr = ui_in[4:1];
+
+    //instantiation of the 8-bit eater
+    //the name of the top module is 'eightBit'
+    eightBit eightBit_inst (
+        .prog_mode(prog_mode),
+        .addr(addr),
+        .data(uio_out),
+        .uio_oe(uio_oe),
+        .ena(ena),
+        .fastClk(clk),
+        .rst(rst_n)
+    );
 
 endmodule
