@@ -11,7 +11,7 @@ module register #(parameter n = 8) (
         if (rst == 1) begin
             dataOut = 0;
         end
-        if (load == 1) begin
+        else if (load == 1) begin
             dataOut = data;
         end
     end
