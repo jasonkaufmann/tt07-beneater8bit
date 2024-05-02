@@ -19,6 +19,7 @@ wire [7:0] b;
 assign uio_oe = prog_mode ? 8'b0 : 8'b1; // if prog_mode is high, make uio_oe an input, otherwise make it an output
 
 // INSTANTIATE THE CLOCK //
+wire slowClk;
 clock mainClock (.fastClk(fastClk), .slowClk(slowClk));
 assign clk = slowClk & !hlt;
 
