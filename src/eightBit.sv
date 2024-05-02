@@ -26,7 +26,7 @@ module eightBit (
     wire [3:0] countOut;
     programCounter pc (.clk(clk), .jump(j), .countEnable(ce), .jumpAddr(data[3:0]), .addr(countOut));
     assign data = co ? {4'h0, countOut} : 8'hZZ;
-clr
+
     // MAKE THE DECODER LOGIC //
     wire [7:0] insnOut;
     decoder controlLogic(.insn(insnOut), .clk(clk), .rst(rst), .hlt(hlt), .mi(mi),
