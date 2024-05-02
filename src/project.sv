@@ -4,7 +4,7 @@
  */
 
 `default_nettype none
-`include "eightBit.sv"
+
 module tt_um_eater_8bit (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
@@ -22,6 +22,9 @@ module tt_um_eater_8bit (
     //the next four bits are the address in RAM we want to store the data in
     wire [3:0] addr = ui_in[4:1];
 
+    wire output_enable;
+    assign uo_out[0] = output_enable;
+
     //instantiation of the 8-bit eater
     //the name of the top module is 'eightBit'
     eightBit eightBit_inst (
@@ -32,7 +35,7 @@ module tt_um_eater_8bit (
         .ena(ena),
         .fastClk(clk),
         .rst(rst_n),
-        .output_enable(),
+        .output_enable(output_enable),
     );
 
 endmodule

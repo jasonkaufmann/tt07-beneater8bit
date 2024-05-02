@@ -7,12 +7,12 @@ module register #(parameter n = 8) (
     input rst,
     output reg [n-1:0] dataOut);
 
-always @ (posedge clk) begin
-    if (rst == 1) begin
-        dataOut = 0;
+    always @ (posedge clk) begin
+        if (rst == 1) begin
+            dataOut = 0;
+        end
+        if (load == 1) begin
+            dataOut = data;
+        end
     end
-    if (load == 1) begin
-        dataOut = data;
-    end
-end
 endmodule

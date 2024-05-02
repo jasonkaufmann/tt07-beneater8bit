@@ -7,13 +7,13 @@ module alu (
     output zeroFlag,
     output carryFlag );
 
-wire [7:0] bTwosComplement; //create an intermediate for the two's complement for clarity
+    wire [7:0] bTwosComplement; //create an intermediate for the two's complement for clarity
 
-assign bTwosComplement = b ^ sub; //if we want to subtract, xor the b register with 1 to invert it
+    assign bTwosComplement = b ^ sub; //if we want to subtract, xor the b register with 1 to invert it
 
-assign out = a + bTwosComplement + sub; //if subtracting add the sub bit as the carry in bit
+    assign out = a + bTwosComplement + sub; //if subtracting add the sub bit as the carry in bit
 
-assign zeroFlag = &out;
-assign carryFlag = (a[7] & b[7] & !out[7]) | (!a[7] & !b[7] & out[7]);
+    assign zeroFlag = &out;
+    assign carryFlag = (a[7] & b[7] & !out[7]) | (!a[7] & !b[7] & out[7]);
 
 endmodule
