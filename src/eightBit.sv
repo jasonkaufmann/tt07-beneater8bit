@@ -32,7 +32,7 @@ module eightBit (
     wire [7:0] insnOut;
     decoder controlLogic(.insn(insnOut), .clk(clk), .rst(rst), .hlt(hlt), .mi(mi),
     .ri(ri), .ro(ro), .io(io), .ii(ii), .ai(ai), .ao(ao), .sumo(sumo), .sub(sub), 
-    .bi(bi), .oi(oi), .ce(ce), .co(co), .j(j));
+    .bi(bi), .oi(oi), .ce(ce), .co(co), .j(j), .prog_mode(prog_mode));
 
     // MAKE THE A REGISTER //
     wire [7:0] aOut;
