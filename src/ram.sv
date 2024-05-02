@@ -14,15 +14,13 @@ module ram (
     // Declare memory
     reg [7:0]  mem [0:15];
 
-    reg write_state;
-
     //make an edge detector module
     //wire rising_edge;
     //wire falling_edge;
 
     //edge_detector edge_detect(.clk(clk), .rst(rst), .a_i(prog_mode), .rising_edge_o(rising_edge), .falling_edge_o(falling_edge));
     
-    always_ff @ (posedge clk or negedge rst) begin
+    always_ff @ (posedge clk) begin
 
         r_data <= mem[address];
 
