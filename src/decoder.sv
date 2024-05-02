@@ -40,7 +40,7 @@ module decoder (
             microClk <= microClk + 1;
             case (microClk)
                 3'b001: begin
-                    ro <= 1; ii = 1; ce = 1;
+                    ro <= 1; ii <= 1; ce <= 1;
                 end
                 3'b010: begin
                     case (opcode)

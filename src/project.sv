@@ -32,7 +32,6 @@ module tt_um_eater_8bit (
         .addr(addr),
         .data(uio_out),
         .uio_oe(uio_oe),
-        .ena(ena),
         .fastClk(clk),
         .rst(rst_n),
         .output_enable(output_enable)
