@@ -9,10 +9,10 @@ module register #(parameter n = 8) (
 
     always @ (posedge clk) begin
         if (rst == 1) begin
-            dataOut = 0;
+            dataOut <= 0;
         end
         else if (load == 1) begin
-            dataOut = data;
+            dataOut <= data;
         end
     end
 endmodule

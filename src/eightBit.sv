@@ -52,7 +52,7 @@ module eightBit (
 
     // MAKE THE RAM //
     wire [7:0] ramOut;
-    ram ram (.clk(clk),  .w_en(ri), .address(memAddress), .w_data(data), .r_data(ramOut), .rst(rst), .prog_mode(prog_mode));
+    ram ram (.clk(clk),  .w_en(ri), .prog_addr(addr), .address(memAddress), .w_data(data), .r_data(ramOut), .rst(rst), .prog_mode(prog_mode));
 
     assign data = ro ? ramOut : 8'hZZ;
 
@@ -61,5 +61,7 @@ module eightBit (
     alu alu (.a(a), .b(b), .sub(sub), .out(aluOut));
 
     assign data = sumo ? aluOut : 8'hZZ;
+
+    assign output_enable = oi;
 
 endmodule

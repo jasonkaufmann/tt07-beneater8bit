@@ -15,10 +15,10 @@ module clock (
     reg [31:0] count = 0;
 
     always @(posedge fastClk) begin
-        count = count + 1; //increment the counter
+        count <= count + 1; //increment the counter
         if (count == maxCount) begin
-            slowClk = ~slowClk; //toggle the clock
-            count = 0; //reset the coutner
+            slowClk <= ~slowClk; //toggle the clock
+            count <= 0; //reset the coutner
         end
     end
 

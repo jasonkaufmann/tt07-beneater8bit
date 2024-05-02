@@ -11,11 +11,10 @@ module programCounter (
 
     always @ (posedge clk) begin
         if(countEnable == 1'b1) begin
-            addr = addr + 1;
+            addr <= addr + 1;
         end
-
-        if (jump == 1'b1) begin
-            addr = jumpAddr;
+        else if (jump == 1'b1) begin
+            addr <= jumpAddr;
         end
     end
 
