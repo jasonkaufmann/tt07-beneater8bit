@@ -2,7 +2,7 @@
 
 module edge_detector (
   input     wire    clk,
-  input     wire    reset,
+  input     wire    rst,
 
   input     wire    a_i,
 
@@ -12,8 +12,8 @@ module edge_detector (
 
     logic a_ff;
 
-    always_ff @(posedge clk or posedge reset)
-      if (reset)
+    always_ff @(posedge clk or posedge rst)
+      if (rst)
         a_ff <= 1'b0;
       else
         a_ff <= a_i;

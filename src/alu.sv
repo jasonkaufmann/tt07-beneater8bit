@@ -3,7 +3,7 @@ module alu (
     input wire [7:0] b,
     input sub,
     
-    output wire [7:0] out, 
+    output wire [7:0] out
     //output zeroFlag,
     //output carryFlag 
     );
