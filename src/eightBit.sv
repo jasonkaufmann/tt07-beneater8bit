@@ -1,16 +1,17 @@
 //top level module
 module eightBit (
-    input  wire       prog_mode, // program in the RAM or run the program
-    input  wire [3:0] addr,      // address in the RAM
-    output wire [7:0] data,      // IOs: Output path
-    output wire [7:0] uio_oe,    // IOs: Enable path (active high: 0=input, 1=output)
-    input  wire       ena,       // always 1 when the design is powered, so you can ignore it
-    input  wire       fastClk,   // clock
-    input  wire       rst        // reset_n - low to reset
+    input  wire       prog_mode,     // program in the RAM or run the program
+    input  wire [3:0] addr,          // address in the RAM
+    output wire [7:0] data,          // IOs: Output path
+    output wire [7:0] uio_oe,        // IOs: Enable path (active high: 0=input, 1=output)
+    output wire       output_enable, // enable the output register
+    input  wire       ena,           // always 1 when the design is powered, so you can ignore it
+    input  wire       fastClk,       // clock
+    input  wire       rst            // reset_n - low to reset
 );
 
 wire clk;
-wire hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co, j;
+wire hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co, j, clr;
 wire [7:0] a;
 wire [7:0] b;
 
@@ -34,7 +35,7 @@ decoder controlLogic(.insn(insnOut), .clk(clk), .rst(rst), .hlt(hlt), .mi(mi),
 
 // MAKE THE A REGISTER //
 wire [7:0] aOut;
-register #(.n(8)) aRegister (.clk(clk), .data(data), .load(ai), .rst(rst), dataOut(a));
+register #(.n(8)) aRegister (.clk(clk), .data(data), .load(ai), .rst(rst), .dataOut(a));
 assign data = ao ? a : 8'hZZ;
 
 // MAKE THE B REGISTER //
