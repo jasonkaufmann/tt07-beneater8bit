@@ -30,11 +30,9 @@ module decoder (
     we're on */
     always @(negedge clk or posedge rst) begin
 
-
-        {hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co} = 1'b0;
-
         if(rst == 1'b1) begin
             microClk <= 3'b000;
+            {hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co} <= 14'b0;
             mi <= 1; co <= 1;
         end else if(prog_mode == 1'b1) begin
             hlt <= 1;
