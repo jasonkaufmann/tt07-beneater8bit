@@ -99,9 +99,8 @@ module decoder (
                     hlt <= 1;  // Set halt immediately on opcode fetch
                 end
                 default: begin
-                    if (microClk == 3'b101) {  // Reset signals at the end of cycle
+                    if (microClk == 3'b101)  // Reset signals at the end of cycle
                         {mi, co} <= 2'b11;  // Default action to prepare for next instruction
-                    }
                 end
             endcase
         end   
