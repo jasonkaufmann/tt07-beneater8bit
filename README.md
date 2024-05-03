@@ -1,5 +1,20 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
+# How it works
+This is Ben Eater's 8 Bit computer on an ASIC!
+
+# How to test
+To program the computer follow these steps:
+
+enable this design in TT (micropython or your own custom setup)
+send prog_mode bit high
+on each next clock pulse, put the desired 4 bit address you want to write to on the address lines along with the data to be stored there.
+since this computer only has a 4 bit address space you can only store 16 total bytes for the program and memory
+see https://eater.net/8bit/ on how to program the computer (what the opcodes are etc)
+
+# External hardware
+You will want to make the output register on a breadboard to connect it to the 8 bit I/O lines. See https://eater.net/8bit/output for detailed info.
+
 # Tiny Tapeout Verilog Project Template
 
 - [Read the documentation for project](docs/info.md)
