@@ -1,7 +1,6 @@
 module ram (
      // Inputs
     input               clk,
-    input               rst,
     input               w_en,
     input               prog_mode,
     input       [3:0]   address,

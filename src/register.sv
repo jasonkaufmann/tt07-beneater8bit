@@ -7,7 +7,7 @@ module register #(parameter n = 8) (
     input rst,
     output reg [n-1:0] dataOut);
 
-    always @ (posedge clk) begin
+    always @ (posedge clk or negedge rst) begin
         if (rst == 1'b0) begin
             dataOut <= 0;
         end

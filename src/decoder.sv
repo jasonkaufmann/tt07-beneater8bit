@@ -56,6 +56,10 @@ module decoder (
                         4'b1111: begin
                             hlt <= 1;
                         end
+                        default: begin
+                            {hlt, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce} <= 12'b0;
+                            mi <= 1; co <= 1;
+                        end
                     endcase
                 end
                 3'b011: begin
@@ -66,6 +70,10 @@ module decoder (
                         4'b0010: begin
                             ro <= 1; bi <= 1;
                         end
+                        default: begin
+                            {hlt, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce} <= 12'b0;
+                            mi <= 1; co <= 1;
+                        end
                     endcase
                 end
                 3'b100: begin
@@ -73,10 +81,18 @@ module decoder (
                         4'b0010: begin
                             ai <= 1; sumo <= 1;
                         end
+                        default: begin
+                            {hlt, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce} <= 12'b0;
+                            mi <= 1; co <= 1;
+                        end
                     endcase
                 end
                 3'b101: begin
                     microClk <= 3'b000;
+                    mi <= 1; co <= 1;
+                end
+                default: begin
+                    {hlt, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce} <= 12'b0;
                     mi <= 1; co <= 1;
                 end
             endcase
