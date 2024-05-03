@@ -60,6 +60,7 @@ module eightBit (
 
     assign data = sumo ? aluOut : 8'hZZ;
 
+    // SET THE OUTPUT ENABLE //
     assign output_enable = oi;
 
 endmodule

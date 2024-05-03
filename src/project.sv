@@ -24,6 +24,7 @@ module tt_um_eater_8bit (
 
     wire output_enable;
     assign uo_out[0] = output_enable;
+    assign uo_out[7:1] = 7'b0;
 
     //instantiation of the 8-bit eater
     //the name of the top module is 'eightBit'
