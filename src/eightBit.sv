@@ -9,8 +9,9 @@ module eightBit (
     input  wire       rst            // reset_n - low to reset
 );
 
-    wire clk;
-    wire hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co, j;
+    wire clk; //clock
+    wire hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co, j; //control lines
+    wire zf, cf; //flags
     wire [7:0] a;
     wire [7:0] b;
 
@@ -31,7 +32,7 @@ module eightBit (
     wire [7:0] insnOut;
     decoder controlLogic(.insn(insnOut), .clk(clk), .rst(rst), .hlt(hlt), .mi(mi),
     .ri(ri), .ro(ro), .io(io), .ii(ii), .ai(ai), .ao(ao), .sumo(sumo), .sub(sub), 
-    .bi(bi), .oi(oi), .ce(ce), .co(co), .j(j), .prog_mode(prog_mode));
+    .bi(bi), .oi(oi), .ce(ce), .co(co), .j(j), .prog_mode(prog_mode), .cf(cf), .zf(zf));
 
     // MAKE THE A REGISTER //
     register #(.n(8)) aRegister (.clk(clk), .data(data), .load(ai), .rst(rst), .dataOut(a));
@@ -42,7 +43,7 @@ module eightBit (
 
     // MAKE THE INSTRUCTION REGISTER //
     register #(.n(8)) insnRegister (.clk(clk), .data(data), .load(ii), .dataOut(insnOut), .rst(rst));
-    assign data = io ? insnOut : 8'hZZ;
+    assign data = io ? insnOut[3:0] : 8'hZZ;
 
     // MAKE THE MEMORY ADDRESS REGISTER //
     wire [3:0] memAddress;
@@ -56,7 +57,7 @@ module eightBit (
 
     // MAKE THE ALU //
     wire [7:0] aluOut;
-    alu alu (.a(a), .b(b), .sub(sub), .out(aluOut));
+    alu alu (.a(a), .b(b), .sub(sub), .out(aluOut), .zeroFlag(zf), .carryFlag(cf));
 
     assign data = sumo ? aluOut : 8'hZZ;
 

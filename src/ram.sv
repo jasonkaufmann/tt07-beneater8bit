@@ -19,7 +19,7 @@ module ram (
 
     //edge_detector edge_detect(.clk(clk), .rst(rst), .a_i(prog_mode), .rising_edge_o(rising_edge), .falling_edge_o(falling_edge));
     
-    always_ff @ (posedge clk) begin
+    always @ (posedge clk) begin
 
         r_data <= mem[address];
 
