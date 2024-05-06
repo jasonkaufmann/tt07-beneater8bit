@@ -14,9 +14,8 @@ module ram (
     // Declare memory
     reg [7:0]  mem [0:15];
     
-    always @ (posedge clk or address) begin
+    always @ (posedge clk) begin
 
-        r_data <= mem[address];
 
         if (prog_mode == 1'b1) begin
             mem[prog_addr] <= program_data;
@@ -25,6 +24,8 @@ module ram (
             mem[address] <= w_data;
         end
     end
+
+    assign r_data = mem[address];
 
     // Initialization (if available)
     //initial if (INIT_FILE) begin
