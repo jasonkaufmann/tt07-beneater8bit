@@ -5,7 +5,7 @@ module eightBit (
     input  wire       clock_max_count,
     input  wire [3:0] addr,          // address in the RAM
     output wire [7:0] data,          // IOs: Output path
-    output wire [7:0] data_in,       // IOs: Input path
+    input wire [7:0] data_in,       // IOs: Input path
     output wire [7:0] uio_oe,        // IOs: Enable path (active high: 0=input, 1=output)
     output wire       output_enable, // enable the output register
     input  wire       fastClk,       // clock

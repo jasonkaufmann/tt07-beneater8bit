@@ -82,6 +82,20 @@ async def test_project(dut):
 
     dut.ui_in.value = (dut.ui_in.value & 0xFE) #Set the first bit to 0
     dut._log.info(f"Setting prog_mode to 0 to let the computer execute the program")
-    await ClockCycles(dut.clk, 50)  # Wait for 50 clock cycle
+
+    #wait until the output enable is set to 1
+    enableOut = False
+    
+    while not enableOut:
+        await RisingEdge(dut.clk)
+        dut._log.info("Waiting for output enable")
+        enableOut = (dut.uo_out.value & 1) == 1 
+    
+    dut._log.info("Output enabled")
+    #log the uo_out value   
+    dut._log.info(f"Output value: {dut.uo_out.value}")
+    dut._log.info(f"Output data: {dut.uio_out.value}")
+
+    expected_output_value = 42  # Expected output value
     # Example assertion to ensure functionality
-    #assert dut.data_output.value == expected_output_value, "Test failed: Output does not match expected value"
+    assert dut.uio_out.value == expected_output_value, "Test failed: Output does not match expected value"
