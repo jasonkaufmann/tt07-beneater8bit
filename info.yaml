@@ -20,7 +20,7 @@ project:
     - "clock.sv"
     - "decoder.sv"
     - "edge_detector.sv"
-    - "eightBit.sv"
+    - "eight_bit.sv"
     - "program_counter.sv"
     - "ram.sv"
     - "register.sv"

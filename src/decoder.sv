@@ -37,9 +37,7 @@ module decoder (
             microClk <= 0;
             {hlt, mi, ri, ro, io, ii, ai, ao, sumo, sub, bi, oi, ce, co, j} <= 15'b0;
             {mi, co} <= 2'b11;
-        end else if (prog_mode) begin
-            hlt <= 1;
-        end else begin
+        end else if (!prog_mode) begin
             // Increment microClk or reset to 0 if it reaches the end of cycle
             microClk <= (microClk == 3'b101) ? 0 : microClk + 1;
             //microClk at 0 and 1 are always the same for all instructions (this is the fetch cycle)

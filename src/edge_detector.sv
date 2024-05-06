@@ -10,13 +10,15 @@ module edge_detector (
   output    wire    falling_edge_o
 );
 
-    logic a_ff;
+    reg a_ff;
 
-    always_ff @(posedge clk or posedge rst)
-      if (rst)
+    always @(posedge clk or negedge rst) begin
+      if (!rst) begin 
         a_ff <= 1'b0;
-      else
+      end else begin
         a_ff <= a_i;
+      end
+    end
 
     // Rising edge when delayed signal is 0 but current is 1
     assign rising_edge_o = ~a_ff & a_i;

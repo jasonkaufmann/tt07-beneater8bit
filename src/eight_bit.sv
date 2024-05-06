@@ -1,8 +1,11 @@
 //top level module
 module eightBit (
     input  wire       prog_mode,     // program in the RAM or run the program
+    input  wire       clock_change_mode,
+    input  wire       clock_max_count,
     input  wire [3:0] addr,          // address in the RAM
     output wire [7:0] data,          // IOs: Output path
+    output wire [7:0] data_in,       // IOs: Input path
     output wire [7:0] uio_oe,        // IOs: Enable path (active high: 0=input, 1=output)
     output wire       output_enable, // enable the output register
     input  wire       fastClk,       // clock
@@ -20,7 +23,7 @@ module eightBit (
 
     // INSTANTIATE THE CLOCK //
     wire slowClk;
-    clock mainClock (.fastClk(fastClk), .slowClk(slowClk));
+    clock mainClock (.rst(rst), .fastClk(fastClk), .slowClk(slowClk), .clock_change_mode(clock_change_mode), .clock_max_count(clock_max_count));
     assign clk = slowClk & !hlt;
 
     // MAKE THE PROGRAM COUNTER //
@@ -51,7 +54,7 @@ module eightBit (
 
     // MAKE THE RAM //
     wire [7:0] ramOut;
-    ram ram (.clk(clk),  .w_en(ri), .prog_addr(addr), .address(memAddress), .w_data(data), .r_data(ramOut), .prog_mode(prog_mode));
+    ram ram (.clk(clk),  .w_en(ri), .prog_addr(addr), .address(memAddress), .w_data(data), .r_data(ramOut), .prog_mode(prog_mode), .program_data(data_in));
 
     assign data = ro ? ramOut : 8'hZZ;
 

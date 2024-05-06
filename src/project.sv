@@ -19,6 +19,10 @@ module tt_um_eater_8bit (
     //the first bit of the inputs is prog_mode. pick it out and give it a name
     wire prog_mode = ui_in[0];
 
+    wire clock_change_mode = ui_in[5];
+
+    wire clock_max_count = ui_in[6];
+
     //the next four bits are the address in RAM we want to store the data in
     wire [3:0] addr = ui_in[4:1];
 
@@ -30,8 +34,11 @@ module tt_um_eater_8bit (
     //the name of the top module is 'eightBit'
     eightBit eightBit_inst (
         .prog_mode(prog_mode),
+        .clock_change_mode(clock_change_mode),
+        .clock_max_count(clock_max_count),
         .addr(addr),
         .data(uio_out),
+        .data_in(uio_in),
         .uio_oe(uio_oe),
         .fastClk(clk),
         .rst(rst_n),
