@@ -16,7 +16,6 @@ module ram (
     
     always @ (posedge clk) begin
 
-
         if (prog_mode == 1'b1) begin
             mem[prog_addr] <= program_data;
         end

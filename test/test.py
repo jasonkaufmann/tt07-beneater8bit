@@ -88,7 +88,7 @@ async def test_project(dut):
     
     while not enableOut:
         await RisingEdge(dut.clk)
-        dut._log.info("Waiting for output enable")
+        dut._log.info(f"Output value: {dut.uo_out.value}")
         if 'x' in str(dut.uo_out.value):
             # Handle the 'x' case, possibly by assigning a default value
             enableOut = False  # Example default behavior
