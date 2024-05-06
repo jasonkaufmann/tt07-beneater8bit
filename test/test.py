@@ -85,7 +85,8 @@ async def test_project(dut):
 
     #wait until the output enable is set to 1
     enableOut = False
-    
+    maxCount = 100
+
     while not enableOut:
         await RisingEdge(dut.clk)
         dut._log.info(f"Output value: {dut.uo_out.value}")
@@ -94,6 +95,9 @@ async def test_project(dut):
             enableOut = False  # Example default behavior
         else:
             enableOut = (dut.uo_out.value & 1) == 1
+        maxCount -= 1
+        if maxCount == 0:
+            break
     
     dut._log.info("Output enabled")
     #log the uo_out value   
