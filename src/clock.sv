@@ -23,8 +23,14 @@ module clock (
     
     edge_detector edge_detect(.clk(fastClk), .rst(rst), .a_i(clock_change_mode), .rising_edge_o(rising_edge), .falling_edge_o(falling_edge));
 
-    always @(posedge fastClk) begin
-        if (rising_edge | falling_edge) begin
+    always @(posedge fastClk or negedge rst) begin
+        if (!rst) begin
+            count <= 0;
+            slowClkInt <= 0;
+            rising_edge <= 0;
+            falling_edge <= 0;
+            maxCount <= 0;
+        end else if (rising_edge | falling_edge) begin
             clockUpdateCounter <= 0;
         end else if (!rising_edge & clock_change_mode) begin
             clockUpdateCounter <= clockUpdateCounter + 1;
