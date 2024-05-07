@@ -73,7 +73,6 @@ async def test_project(dut):
                 dut.uio_in.value = value
                 
                 await FallingEdge(dut.clk)  # Wait for one clock cycle
-                await FallingEdge(dut.clk)  # Wait for one clock cycle
                 line_number += 1
 
     await ClockCycles(dut.clk, 10)  # Wait for ten clock cycles
@@ -83,7 +82,6 @@ async def test_project(dut):
 
     #wait until the output enable is set to 1
     enableOut = False
-    maxCount = 100
 
     while not enableOut:
         await RisingEdge(dut.clk)
@@ -93,9 +91,6 @@ async def test_project(dut):
             enableOut = False  # Example default behavior
         else:
             enableOut = (dut.uo_out.value & 1) == 1
-        maxCount -= 1
-        if maxCount == 0:
-            break
     
     dut._log.info("Output enabled")
     #log the uo_out value   
@@ -105,3 +100,7 @@ async def test_project(dut):
     expected_output_value = 42  # Expected output value
     # Example assertion to ensure functionality
     assert dut.uio_out.value == expected_output_value, "Test failed: Output does not match expected value"
+
+    await ClockCycles(dut.clk, 20)  # Wait for more clock cycles for the program to finish
+
+    dut._log.info("End")
