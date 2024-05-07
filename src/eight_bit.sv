@@ -54,7 +54,7 @@ module eightBit (
 
     // MAKE THE RAM //
     wire [7:0] ramOut;
-    wire ramClk = prog_mode ? fstClk : clk;
+    wire ramClk = prog_mode ? fastClk : clk;
     ram ram (.clk(ramClk), .w_en(ri), .prog_addr(addr), .address(memAddress), .w_data(data), .r_data(ramOut), .prog_mode(prog_mode), .program_data(data_in));
 
     assign data = (ro ? ramOut : 8'hZZ);
