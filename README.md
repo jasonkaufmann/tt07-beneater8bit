@@ -1,14 +1,17 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# How it works
+# ASIC Ben Eater 8-Bit Computer
+## How it works
 
 This is Ben Eater's 8 Bit computer on an ASIC!
 
 All credit for the design, amazing instructional videos, and diagams below goes to Ben Eater.
 
+- [Read the documentation for project](docs/info.md)
+
 ![overview-with-chip-descriptions1](https://github.com/jasonkaufmann/ice40FPGAProjects/assets/41923667/0995715c-218d-4779-85be-36083b9d3e90)
 
-## High level overview
+### High level overview
 
 Full Computer Schematic:
 ![high_level_diagram](https://github.com/jasonkaufmann/ice40FPGAProjects/assets/41923667/f122dd7a-d9fc-4a3f-b961-beee40d9fa35)
@@ -24,7 +27,7 @@ ASIC 2D:
 ASIC 3D:
 ![asic_3d](https://github.com/jasonkaufmann/ice40FPGAProjects/assets/41923667/da51dff7-3b9d-46f9-a9b1-e6c4dc9bc3e7)
 
-# How to test
+## How to test
 
 To program the computer follow these steps:
   - enable my design in TT
@@ -33,7 +36,7 @@ To program the computer follow these steps:
   - since this computer only has a 4 bit address space you can only store 16 bytes total in the internal RAM.
   - see https://eater.net/8bit/ for more details.
   
-## Instructions
+### Instructions
 | OPC | DEC | HEX  | DESCRIPTION                                                    |
 |-----|-----|------|----------------------------------------------------------------|
 | NOP | 00  | 0000 |                                                                |
@@ -53,17 +56,13 @@ To program the computer follow these steps:
 | OUT | 14  | 1110 | Output register A to 7 segment LED display as decimal.         |
 | HLT | 15  | 1111 | Halt execution.                                                |
 
-# External hardware
+## External hardware
 
 You will need the RP2040 or a similar microcontroller to write the program into the internal memory. If you really wanted to, you could go old school and use DIP switches and a manual clock pulse as well.
 
 You will want to make the output register on a breadboard to connect it to the 8 bit I/O lines from the PMOD header. See https://eater.net/8bit/output for detailed design info.
 
-
-# Tiny Tapeout Verilog Project Template
-
-- [Read the documentation for project](docs/info.md)
-
+# Tiny Tapeout Information
 ## What is Tiny Tapeout?
 
 Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip.
