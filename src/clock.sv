@@ -28,6 +28,7 @@ module clock (
             count <= 0;
             slowClkInt <= 0;
             maxCount <= 0;
+            clockUpdateCounter <= 0;
         end else if (rising_edge | falling_edge) begin
             clockUpdateCounter <= 0;
         end else if (!rising_edge & clock_change_mode) begin
