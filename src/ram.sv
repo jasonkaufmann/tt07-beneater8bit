@@ -23,7 +23,7 @@ module ram (
 
     always @ (posedge clk) begin
 
-        if (w_en == 1'b1) begin
+        if (w_en == 1'b1 & prog_mode == 1'b0) begin
             mem[address] <= w_data;
         end
     end
