@@ -29,7 +29,7 @@ module eightBit (
     // MAKE THE PROGRAM COUNTER //
     wire [3:0] countOut;
     programCounter pc (.clk(clk), .jump(j), .countEnable(ce), .jumpAddr(data[3:0]), .addr(countOut), .rst(rst));
-    assign data = (!rst) ? 8'b0 : (co ? {4'h0, countOut} : 8'hZZ);
+    assign data = (co ? {4'h0, countOut} : 8'hZZ);
 
     // MAKE THE DECODER LOGIC //
     wire [7:0] insnOut;
@@ -39,14 +39,14 @@ module eightBit (
 
     // MAKE THE A REGISTER //
     register #(.n(8)) aRegister (.clk(clk), .data(data), .load(ai), .rst(rst), .dataOut(a));
-    assign data = (!rst) ? 8'b0 : (ao ? a : 8'hZZ);
+    assign data = (ao ? a : 8'hZZ);
 
     // MAKE THE B REGISTER //
     register #(.n(8)) bRegister (.clk(clk), .data(data), .load(bi), .rst(rst), .dataOut(b));
 
     // MAKE THE INSTRUCTION REGISTER //
     register #(.n(8)) insnRegister (.clk(clk), .data(data), .load(ii), .dataOut(insnOut), .rst(rst));
-    assign data = (!rst) ? 8'b0 : (io ? {4'h0, insnOut[3:0]} : 8'hZZ);
+    assign data = (io ? {4'h0, insnOut[3:0]} : 8'hZZ);
 
     // MAKE THE MEMORY ADDRESS REGISTER //
     wire [3:0] memAddress;
@@ -56,13 +56,13 @@ module eightBit (
     wire [7:0] ramOut;
     ram ram (.clk(clk),  .w_en(ri), .prog_addr(addr), .address(memAddress), .w_data(data), .r_data(ramOut), .prog_mode(prog_mode), .program_data(data_in));
 
-    assign data = (!rst) ? 8'b0 : (ro ? ramOut : 8'hZZ);
+    assign data = (ro ? ramOut : 8'hZZ);
 
     // MAKE THE ALU //
     wire [7:0] aluOut;
     alu alu (.a(a), .b(b), .sub(sub), .out(aluOut), .zeroFlag(zf), .carryFlag(cf));
 
-    assign data = (!rst) ? 8'b0 : (sumo ? aluOut : 8'hZZ);
+    assign data = (sumo ? aluOut : 8'hZZ);
 
     // SET THE OUTPUT ENABLE //
     assign output_enable = oi;
