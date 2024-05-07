@@ -27,8 +27,6 @@ module clock (
         if (!rst) begin
             count <= 0;
             slowClkInt <= 0;
-            rising_edge <= 0;
-            falling_edge <= 0;
             maxCount <= 0;
         end else if (rising_edge | falling_edge) begin
             clockUpdateCounter <= 0;
