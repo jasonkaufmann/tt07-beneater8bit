@@ -4,7 +4,11 @@
 ## How it works
 
 This is Ben Eater's 8 Bit breadboad computer on an ASIC!
+
+Links: 
+
 https://eater.net/8bit/
+
 https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU
 
 All credit for the design, amazing instructional videos, and diagams below goes to Ben Eater.
