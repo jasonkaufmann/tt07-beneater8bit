@@ -3,7 +3,9 @@
 # ASIC Ben Eater 8-Bit Computer
 ## How it works
 
-This is Ben Eater's 8 Bit computer on an ASIC!
+This is Ben Eater's 8 Bit breadboad computer on an ASIC!
+https://eater.net/8bit/
+https://www.youtube.com/playlist?list=PLowKtXNTBypGqImE405J2565dvjafglHU
 
 All credit for the design, amazing instructional videos, and diagams below goes to Ben Eater.
 
