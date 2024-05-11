@@ -4,6 +4,7 @@
 ## How it works
 
 This is Ben Eater's 8 Bit breadboad computer on an ASIC!
+(Sadly not as many blinky LEDs, but roughly 10 million times smaller) 
 
 Links: 
 
