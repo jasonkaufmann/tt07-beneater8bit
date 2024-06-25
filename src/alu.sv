@@ -16,6 +16,6 @@ module alu (
     assign out = a + bTwosComplement + {7'b0, sub}; //if subtracting add the sub bit as the carry in bit
 
     assign zeroFlag = &out;
-    assign carryFlag = (a[7] & b[7] & !out[7]) | (!a[7] & !b[7] & out[7]);
+    assign carryFlag = (a[7] & b[7] & !out[7]) | (!a[7] & !b[7] & out[7]); //carry flag is set if both a and b are positive and the result is negative, or if both a and b are negative and the result is positive
 
 endmodule
